@@ -1,0 +1,36 @@
+This is a preliminary python plugin for gnucap that currently can start a IPython shell from within python.
+
+Requirements
+------------
+
+You have to installed the modified version of gnucap that is compiled as a
+shared library. You can download it from the git repo at 
+http://github.com/henjo/gnucap.
+
+Installation
+------------
+
+.. code-block:: sh
+   $ ./autogen.sh
+   $ make install
+
+Example
+-------
+
+Go to example and run rungnucap.sh as:
+
+.. code-block:: sh
+   $ cd examples
+   $ sh rungnucap.sh
+
+Then gnucap is started and if everything was compiled correctly an IPython prompy will appear.
+
+Now run:
+
+.. code-block:: python
+   >>> import gnucap
+   >>> gnucap.command("get eq2-145.ckt")
+   >>> gnucap.command("dc")
+
+
+
