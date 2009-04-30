@@ -1,0 +1,2 @@
+attach ../gnucap-plugins/python.so
+python

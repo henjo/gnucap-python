@@ -2,13 +2,15 @@
 ##
 ## Top level automake file for gnucap
 
-all: c_python.so
+pluginsdir = `pwd`/gnucap-plugins
+
+plugins_LTLIBRARIES = python.la
+
+python_la_SOURCES = c_python.cc
+python_la_CPPFLAGS = @PYTHON_CPPFLAGS@
+python_la_CFLAGS = -fPIC
+python_la_LDFLAGS = -shared -module -avoid-version @LDFLAGS@ @PYTHON_LDFLAGS@
+python_la_LIBS = @PYTHON_EXTRA_LIBS@
 
 ACLOCAL_AMFLAGS = -I m4
 
-CFLAGS = @CFLAGS@ -export-dynamic -shared -fPIC @PYTHON_CPPFLAGS@
-LDFLAGS = @LDFLAGS@ @PYTHON_LDFLAGS@
-LIBS = @LIBS@ @PYTHON_EXTRA_LIBS@
-
-c_python.so: c_python.cc $(GNUCAP_HEADERS)
-	$(CPP)  $< -o $@ $(CFLAGS) $(LIBS) $(LDFLAGS)
