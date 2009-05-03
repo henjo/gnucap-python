@@ -15,6 +15,8 @@ AC_CHECK_LIB([dl], [dlopen])
 
 # Check for python
 AC_PYTHON_DEVEL([>= '2.3'])
+AC_SUBST(ac_python_soname)
+AC_SUBST(ac_python_libdir)
 
 ## Libtool init
 LT_INIT
@@ -32,6 +34,25 @@ fi
 
 AC_SUBST(GNUCAP_CFLAGS)
 AC_SUBST(GNUCAP_LDFLAGS)
+
+## Check for numpy development file
+AC_PYTHON_MODULE(numpy)
+NUMPY_DIR="${PYTHON_SITE_PKG}/numpy"
+AC_ARG_WITH([numpy], [AC_HELP_STRING([--with-numpy=DIR],
+                     [directory where numpy is installed
+                      [default=${PYLIBDIR}/numpy] ])],
+        NUMPY_DIR=$withval)
+NUMPY_DIR="${NUMPY_DIR}/core/include/numpy"
+save_CPPFLAGS="$CPPFLAGS"
+CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS -I$NUMPY_DIR"
+AC_CHECK_HEADER([${NUMPY_DIR}/arrayobject.h],
+                [AC_DEFINE(HAS_NUMPY,,[wether to include numpy support]),
+                HAS_NUMPY=yes],,
+                [#include "Python.h"])
+CPPFLAGS=$save_CPPFLAGS
+AM_CONDITIONAL(NUMPY, test "x$HAS_NUMPY" = "xyes")
+
+AC_PROG_SWIG()
 
 # exports symbols to plugins
 LDFLAGS="$LDFLAGS -rdynamic"
