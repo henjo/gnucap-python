@@ -1,47 +1,45 @@
 #include "gnucap/u_lang.h"
 #include "gnucap/c_comand.h"
 #include "gnucap/globals.h"
+#include "gnucap/s__.h"
 
 #include <Python.h>
 
-#define PYTHON_SO "/usr/lib/libpython2.6.so"
+#include "gnucap_module.h"
+
+// Swig _gnucap init function prototype
+extern "C" void init_gnucap();
 
 /*--------------------------------------------------------------------------*/
 namespace {
   static int python_loaded = 0;
 
-  static PyObject *command(PyObject *self, PyObject *args) {
-    int ok;
-    char *command;
-
-    ok = PyArg_ParseTuple(args, "s", &command);
-
-    if(ok) {
-      CMD::command(std::string(command), &CARD_LIST::card_list);
-    }
-
-    Py_RETURN_NONE;
-  }
-
-  static PyMethodDef gnucap_methods[] = {
-    {"command", command, METH_VARARGS,
-     "Return the number of arguments received by the process."},
-    {NULL, NULL, 0, NULL}
-  };
-
 /*--------------------------------------------------------------------------*/
 void eval_python(CS& cmd, OMSTREAM out, CARD_LIST* scope)
 {
+  std::string file_name;
   char *argv[] = {};
+  FILE *fp;
+
+  cmd >> file_name;
+  
+  fp = fopen(file_name.c_str(), "r");
+  
+  if(fp == NULL) 
+    throw Exception_File_Open(std::string("Could not open ") + file_name);
+  
   if(!python_loaded) {
     dlopen(PYTHON_SO, RTLD_NOW|RTLD_GLOBAL);
     Py_Initialize();
     PySys_SetArgv(0, argv);
-    Py_InitModule("gnucap", gnucap_methods);
+    
+    // Call init function of SWIG _gnucap module
+    init_gnucap();
+
     python_loaded = 1;
   }
-  PyRun_SimpleString("import IPython");
-  PyRun_SimpleString("IPython.Shell.IPShell().mainloop(sys_exit=1);");
+
+  PyRun_SimpleFile(fp, file_name.c_str());
 }
 
 /*--------------------------------------------------------------------------*/

@@ -1,36 +1,60 @@
-This is a preliminary python plugin for gnucap that currently can start a IPython shell from within python.
+This package contains a python plugin for the circuit simulator Gnucap which\    allows the user to write custom commands in Python. 
+It also provides a gnucap extension for Python where gnucap can be used 
+as a library. No gnucap binary is needed. 
 
-Requirements
-------------
+There is also waveform numpy array
+conversion functions which means that post-processing of gnucap simulation
+results can be done in Python using numpy/scipy/matplotlib.
+
+ Requirements
+-------------
 
 You have to installed the modified version of gnucap that is compiled as a
 shared library. You can download it from the git repo at 
 http://github.com/henjo/gnucap.
 
-Installation
-------------
+Other requirements are:
+  * Python >= 2.4
+  * Swig
+  * Numpy (with development headers/libraries)
+
+ Installation
+-------------
+
+Build python plugin for gnucap
 
 .. code-block:: sh
    $ ./autogen.sh
    $ make install
 
-Example
--------
+The resulting plugin will be written to "gnucap-plugins/python.so".
 
-Go to example and run rungnucap.sh as:
+Build gnucap extension
+
+.. code-block:: sh
+   $ python setup.py build
+   $ sudo python setup.py install
+
+Examples
+--------
+
+From gnucap
+~~~~~~~~~~~
+
+Start a gnucap session, load the python plugin and run the python script test.py. This scripts defines a new command called myplot that plots a stored waveform
+using Matplotlib and then runs an ac simulation and plots the result.
 
 .. code-block:: sh
    $ cd examples
-   $ sh rungnucap.sh
+   $ gnucap
+   gnucap> attach ../gnucap-plugins/python.so
+   gnucap> python test.py
 
-Then gnucap is started and if everything was compiled correctly an IPython prompy will appear.
+From Python
+~~~~~~~~~~~
 
-Now run:
+Do the same directly from Python
 
-.. code-block:: python
-   >>> import gnucap
-   >>> gnucap.command("get eq2-145.ckt")
-   >>> gnucap.command("dc")
-
-
-
+.. code-block:: sh
+   $ cd examples
+   $ python test.py
