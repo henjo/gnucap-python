@@ -5,8 +5,6 @@
 
 #include <Python.h>
 
-#include "gnucap_module.h"
-
 // Swig _gnucap init function prototype
 extern "C" void init_gnucap();
 
