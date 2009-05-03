@@ -1,2 +1,2 @@
 attach ../gnucap-plugins/python.so
-python
+python test.py
