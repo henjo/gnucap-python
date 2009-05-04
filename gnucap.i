@@ -40,10 +40,18 @@ public:
       const std::string fullstring()const;
 };
 
+%feature("director") CMD;
+class CMD { 
+public:            
+      CMD();
+      virtual void do_it(CS& cmd, CARD_LIST*)=0;
+};
+
 %feature("director") SIM;
-class SIM {
+class SIM : public CMD {
 public:
         static WAVE* find_wave(const std::string&);
+      
 private:
         const std::string long_label()const {unreachable(); return "";}
 private:
@@ -52,13 +60,6 @@ private:
         virtual void  finish()        {}
         virtual bool  is_step_rejected()const {return false;}
 
-};
-
-%feature("director") CMD;
-class CMD { 
-public:            
-      CMD();
-      virtual void do_it(CS& cmd, CARD_LIST*)=0;
 };
 
 enum RUN_MODE {
