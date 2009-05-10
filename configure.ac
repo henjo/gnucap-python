@@ -19,7 +19,7 @@ AC_SUBST(ac_python_soname)
 AC_SUBST(ac_python_libdir)
 
 ## Libtool init
-LT_INIT
+AC_PROG_LIBTOOL
 AC_CONFIG_MACRO_DIR([m4])
 
 ## Check for gnucap
