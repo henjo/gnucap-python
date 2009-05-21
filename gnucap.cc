@@ -1,3 +1,4 @@
+#include "gnucap.h"
 #include "gnucap/u_lang.h"
 #include "gnucap/c_comand.h"
 #include "gnucap/globals.h"
