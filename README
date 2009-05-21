@@ -41,14 +41,19 @@ Examples
 From gnucap
 ~~~~~~~~~~~
 
-Start a gnucap session, load the python plugin and run the python script test.py. This scripts defines a new command called myplot that plots a stored waveform
-using Matplotlib and then runs an ac simulation and plots the result.
-
 .. code-block:: sh
-   $ cd examples
    $ gnucap
-   gnucap> attach ../gnucap-plugins/python.so
-   gnucap> python test.py
+   gnucap> attach gnucap-plugins/python.so
+   gnucap> python example/loadplot.py
+   gnucap> get example/eq2-145.ckt
+   gnucap> store ac vm(2)
+   gnucap> ac oct 10 1k 100k
+   gnucap> myplot vm(2)
+
+First the gnucap plugin is loaded. The second line loads a new command called 
+"myplot" that plots a stored waveform using matplotlib. Line 3-5 loads a 
+circuit and runs an ac analysis. Finally the ac magnitude of node 2 is plotted
+using the new plotting command.
 
 From Python
 ~~~~~~~~~~~
@@ -57,4 +62,4 @@ Do the same directly from Python
 
 .. code-block:: sh
    $ cd examples
-   $ python test.py
+   $ python simple.py
