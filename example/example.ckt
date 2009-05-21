@@ -1,0 +1,5 @@
+Test circuit
+Vin 1 0 dc 0 ac 1.0
+R1 1 2 1e3
+C1 2 0 1e-8
+.end
