@@ -1,2 +1,9 @@
 attach ../gnucap-plugins/python.so
-python test.py
+python loadplot.py
+
+get eq2-145.ckt
+
+store ac vm(2)
+ac oct 10 1k 100k
+
+myplot vm(2)
