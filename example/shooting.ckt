@@ -1,0 +1,5 @@
+RC circuit
+Vin 1 0 dc 0 ac 1.5 pulse(iv=0, pv=1, period=1e-3, width=.5e-3)
+R1 1 2 1e3
+C1 2 0 1e-6
+.end
