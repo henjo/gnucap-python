@@ -11,7 +11,7 @@ gnucap_module = Extension('_gnucap',
                                    'gnucap.i'],
                           language = 'c++',
                           libraries = ['gnucap'],
-                          swig_opts = ['-c++', '-DHAS_NUMPY']
+                          swig_opts = ['-c++', '-DHAS_NUMPY -Wall']
                           )
 
 setup (name = 'gnucap',
