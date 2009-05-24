@@ -9,7 +9,7 @@ public:
   virtual void  sweep()=0;
 };
 
-void command(char *command);
+std::string command(char *command);
 DISPATCHER<CMD>::INSTALL *attach_command(char *command_name, CMD *cmd);
 void detach_command(DISPATCHER<CMD>::INSTALL *installer);
 
