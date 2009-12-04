@@ -96,7 +96,6 @@ public:
 class CARD_LIST {
 public:
    CARD_LIST& expand();
-   CARD_LIST& precalc();
    CARD_LIST& map_nodes();
    CARD_LIST& tr_iwant_matrix();
    CARD_LIST& tr_begin();
@@ -152,7 +151,6 @@ public:
 public: // parameters
   virtual std::string value_name()const = 0;
 
-  virtual bool param_exists(int i)const {return param_name(i) != "";}
   virtual bool param_is_printable(int)const;
   virtual std::string param_name(int)const;
   virtual std::string param_name(int,int)const;
