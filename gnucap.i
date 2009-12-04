@@ -72,7 +72,7 @@ public:
   void          fbsub(T* x, const T* b, T* c = NULL) const;
 
   T     d(int r, int  )const    {return *(_diaptr[r]);}
-  T&    m(int r, int c);
+  const T&    s(int r, int c);
 
 private:
   T& m(int r, int c);
