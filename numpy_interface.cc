@@ -84,7 +84,7 @@ PyObject *bsmatrix_to_array_d(BSMATRIX<double> &A) {
   double *ptr = (double *) PyArray_DATA(Aarray);
   for(i = 1; i <= A.size(); i++) 
     for(j = 1; j <= A.size(); j++)
-      *ptr++ = A.m(i,j);
+      *ptr++ = A.s(i,j);
 
   return Aarray;
 }
@@ -101,8 +101,8 @@ PyObject *bsmatrix_to_array_c(BSMATRIX<COMPLEX> &A) {
   npy_complex128 *ptr = (npy_complex128 *) PyArray_DATA(Aarray);
   for(i = 1; i <= A.size(); i++) 
     for(j = 1; j <= A.size(); j++) {
-      ptr->real = A.m(i,j).real();
-      ptr->imag = A.m(i,j).imag();
+      ptr->real = A.s(i,j).real();
+      ptr->imag = A.s(i,j).imag();
       ptr++;
     }
   return Aarray;
