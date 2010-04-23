@@ -23,7 +23,8 @@ Other requirements are:
 
 Build python plugin for gnucap
 
-.. code-block:: sh
+::
+
    $ ./autogen.sh
    $ make install
 
@@ -31,7 +32,8 @@ The resulting plugin will be written to "gnucap-plugins/python.so".
 
 Build gnucap extension
 
-.. code-block:: sh
+::
+
    $ python setup.py build
    $ sudo python setup.py install
 
@@ -41,7 +43,8 @@ Examples
 From gnucap
 ~~~~~~~~~~~
 
-.. code-block:: sh
+::
+
    $ gnucap
    gnucap> attach gnucap-plugins/python.so
    gnucap> python example/loadplot.py
@@ -60,6 +63,7 @@ From Python
 
 Do the same directly from Python
 
-.. code-block:: sh
+::
+
    $ cd examples
    $ python simple.py
