@@ -2,7 +2,7 @@
 ##
 ## Top level automake file for gnucap
 
-pluginsdir = `pwd`/gnucap-plugins
+pluginsdir = $(libdir)/gnucap
 
 plugins_LTLIBRARIES = python.la
 
