@@ -2,7 +2,7 @@ Source: gnucap-python
 Section: electronics
 Priority: extra
 Maintainer: Henrik Johansson <henrik@johome.net>
-Build-Depends: debhelper (>= 7), autotools-dev, autoconf, automake, libtool, python-numpy-dev, swig, libgnucap-dev, python-all-dev, python-support
+Build-Depends: debhelper (>= 7), cdbs, autotools-dev, autoconf, automake, libtool, python-numpy-dev, swig, libgnucap-dev, python-all-dev, python-support
 Standards-Version: 3.8.1
 Homepage: https://github.com/henjo/libpsf
 XS-Python-Version: >=2.4
