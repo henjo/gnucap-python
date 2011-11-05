@@ -24,17 +24,6 @@ AC_CONFIG_MACRO_DIR([m4])
 
 ## Check for gnucap
 PKG_CHECK_MODULES([DEPS], [libgnucap >= 0.0])
-#a=1
-#AC_CHECK_HEADER(gnucap/c_comand.h, [], [a=0])
-#AC_CHECK_LIB(gnucap, status, [], [a=0])
-
-#if test $a == 0
-#then
-#   AC_MSG_ERROR([Error, gnucap as shared library not found.])
-#fi
-
-AC_SUBST(GNUCAP_CFLAGS)
-AC_SUBST(GNUCAP_LDFLAGS)
 
 ## Check for numpy development file
 AC_PYTHON_MODULE(numpy)
