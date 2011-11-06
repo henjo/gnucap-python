@@ -15,11 +15,11 @@ endif
 python_la_CPPFLAGS = @PYTHON_CPPFLAGS@ \
 	-DPYTHON_SO=\"@ac_python_libdir@/@ac_python_soname@\"
 
-python_la_CFLAGS = -fPIC @DEPS_CFLAGS@ 
+python_la_CFLAGS = -fPIC ${DEPS_CFLAGS}
 
 python_la_LDFLAGS = -shared -module -avoid-version @LDFLAGS@ @PYTHON_LDFLAGS@
 
-python_la_LIBS = @DEPS_LIBS@ @PYTHON_EXTRA_LIBS@
+python_la_LIBADD = ${DEPS_LIBS} @PYTHON_EXTRA_LIBS@
 
 ACLOCAL_AMFLAGS = -I m4
 

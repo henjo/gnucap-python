@@ -10,7 +10,7 @@ XS-Python-Version: >=2.4
 Package: gnucap-python
 Section: electronics
 Architecture: any
-Depends: libgnucap
+Depends: ${shlibs:Depends}
 Description: Python extension for gnucap library
  python-gnucap is a Python extension for shared library version of 
  gnucap
@@ -19,7 +19,7 @@ Package: python-gnucap
 Section: electronics
 Architecture: any
 XB-Python-Version: >=2.4
-Depends: ${misc:Depends}, ${python:Depends}, libgnucap
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Description: Python extension for gnucap library
  python-gnucap is a Python extension for shared library version of 
  gnucap
